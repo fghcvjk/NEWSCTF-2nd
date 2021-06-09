@@ -1,0 +1,8 @@
+version: "2"
+services:
+  web:
+    build: .
+    image: newsctf_web5
+    restart: always
+    ports:
+      - "0.0.0.0:22223:80"

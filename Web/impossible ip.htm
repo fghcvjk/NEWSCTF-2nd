@@ -1,0 +1,25 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php
+<br>error_reporting</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);
+<br></span><span style="color: #0000BB">highlight_file</span><span style="color: #007700">(</span><span style="color: #0000BB">__FILE__</span><span style="color: #007700">);
+<br></span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">base64_decode</span><span style="color: #007700">(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'data'</span><span style="color: #007700">]);
+<br></span><span style="color: #0000BB">$host&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'host'</span><span style="color: #007700">];
+<br></span><span style="color: #0000BB">$port&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'port'</span><span style="color: #007700">];
+<br>if(</span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'/usr|auto|log/i'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">)){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;die(</span><span style="color: #DD0000">'error'</span><span style="color: #007700">);
+<br>}
+<br></span><span style="color: #0000BB">$fp&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">fsockopen</span><span style="color: #007700">(</span><span style="color: #0000BB">$host</span><span style="color: #007700">,</span><span style="color: #0000BB">intval</span><span style="color: #007700">(</span><span style="color: #0000BB">$port</span><span style="color: #007700">),</span><span style="color: #0000BB">$errno</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$errstr</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">30</span><span style="color: #007700">);
+<br>if&nbsp;(!</span><span style="color: #0000BB">$fp</span><span style="color: #007700">)&nbsp;{
+<br>&nbsp;&nbsp;die();
+<br>}
+<br>else{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fwrite</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(!</span><span style="color: #0000BB">feof</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">))&nbsp;{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">fgets</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">128</span><span style="color: #007700">);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$fp</span><span style="color: #007700">);
+<br>}
+<br></span>
+</span>
+</code></body></html>
