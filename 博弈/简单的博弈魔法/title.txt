@@ -1,0 +1,1 @@
+flag形式为：将得到的.out文件用sha256sum函数计算值，将得到的值用newsctf{}包裹起来提交，其中flag[:12]：newsctf{6886
